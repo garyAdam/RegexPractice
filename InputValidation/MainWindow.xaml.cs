@@ -40,13 +40,22 @@ namespace InputValidation
             else if (!ValidPhone(txtPhone.Text))
             {
                 MessageBox.Show("Invalid Phone");
-
             }
             else if (!ValidEmail(txtEmail.Text))
             {
                 MessageBox.Show("Invalid Email");
-
             }
+            else
+            {
+                txtPhone.Text = ReformatPhone(txtPhone.Text);
+            }
+        }
+
+        private string ReformatPhone(string phone)
+        {
+
+            string fos = Regex.Replace(phone, @"^\(?(\d{3})\)?[\s\-]?(\d{3})\-?(\d{4})$", m => string.Format("({0}) {1}-{2}", m.Groups[1].Value, m.Groups[2].Value, m.Groups[3].Value));
+            return fos;
         }
 
         private bool ValidEmail(string email)
@@ -58,7 +67,7 @@ namespace InputValidation
 
         private bool ValidPhone(string phone)
         {
-            return Regex.IsMatch(phone, @"^\d{11}$");
+            return Regex.IsMatch(phone, @"^\(?(\d{3})\)?[\s\-]?(\d{3})\-?(\d{4})$");
         }
 
         private bool ValidName(string name)
