@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,12 +28,42 @@ namespace InputValidation
 
         private void CommandBinding_CanExecuteSave(object sender, CanExecuteRoutedEventArgs e)
         {
-            
+            e.CanExecute = true;
         }
 
         private void CommandBinding_ExecutedSave(object sender, ExecutedRoutedEventArgs e)
         {
+            if (!ValidName(txtName.Text))
+            {
+                MessageBox.Show("Invalid Name");
+            }
+            else if (!ValidPhone(txtPhone.Text))
+            {
+                MessageBox.Show("Invalid Phone");
 
+            }
+            else if (!ValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Invalid Email");
+
+            }
+        }
+
+        private bool ValidEmail(string email)
+
+        {
+            return Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+
+        }
+
+        private bool ValidPhone(string phone)
+        {
+            return Regex.IsMatch(phone, @"^\d{11}$");
+        }
+
+        private bool ValidName(string name)
+        {
+            return Regex.IsMatch(name, @"^([A-Za-z]+\s*)+$");
         }
     }
 }

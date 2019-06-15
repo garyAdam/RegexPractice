@@ -30,6 +30,6 @@
             <Label Name="lblEmail" Content="Email"></Label>
             <TextBox x:Name="txtEmail" ></TextBox>
         </WrapPanel>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Command="ApplicationCommands.Save" MinWidth="100"></Button>
+        <Button x:Name="btnSave" Content="_Save" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Command="ApplicationCommands.Save" MinWidth="100"></Button>
     </StackPanel>
 </Window>
